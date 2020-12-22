@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.authguard</groupId>
+    <artifactId>java-mail-plugin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.11</maven.compiler.source>
+        <maven.compiler.target>1.11</maven.compiler.target>
+
+        <authguard.version>1.0-SNAPSHOT</authguard.version>
+        <logback.version>1.2.3</logback.version>
+        <guice.version>4.2.2</guice.version>
+        <immutables.version>2.7.4</immutables.version>
+        <jackson.version>2.10.1</jackson.version>
+        <java-mail.version>1.6.2</java-mail.version>
+        <velocity.version>2.2</velocity.version>
+        <handlebars.version>4.2.0</handlebars.version>
+        <vavr.version>0.9.0</vavr.version>
+
+        <surefire.version>3.0.0-M3</surefire.version>
+        <junit.version>5.5.1</junit.version>
+        <assertj.version>3.13.0</assertj.version>
+        <mockito.version>3.0.0</mockito.version>
+        <greenmail.version>1.6.1</greenmail.version>
+    </properties>
+
+    <dependencies>
+        <!-- AuthGuard -->
+        <dependency>
+            <groupId>com.authguard</groupId>
+            <artifactId>config</artifactId>
+            <version>${authguard.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.authguard</groupId>
+            <artifactId>email</artifactId>
+            <version>${authguard.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Immutables -->
+        <dependency>
+            <groupId>org.immutables</groupId>
+            <artifactId>value</artifactId>
+            <version>${immutables.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Java mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${java-mail.version}</version>
+        </dependency>
+
+        <!-- template engines -->
+        <dependency>
+            <groupId>com.github.jknack</groupId>
+            <artifactId>handlebars</artifactId>
+            <version>${handlebars.version}</version>
+        </dependency>
+
+        <!-- Vavr -->
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>${vavr.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- dependency injection -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
+        <!-- testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.icegreen</groupId>
+            <artifactId>greenmail-junit5</artifactId>
+            <version>${greenmail.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+
+                    <annotationProcessorPaths>
+                        <dependency>
+                            <groupId>org.immutables</groupId>
+                            <artifactId>value</artifactId>
+                            <version>${immutables.version}</version>
+                        </dependency>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
