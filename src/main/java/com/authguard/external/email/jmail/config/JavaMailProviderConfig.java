@@ -8,7 +8,8 @@ import java.util.Map;
 @Value.Immutable
 @Value.Style(
         get = { "get*", "enable*" },
-        validationMethod = Value.Style.ValidationMethod.NONE
+        validationMethod = Value.Style.ValidationMethod.NONE,
+        jdkOnly = true
 )
 @JsonDeserialize(as = ImmutableJavaMailProviderConfig.class)
 public interface JavaMailProviderConfig {
