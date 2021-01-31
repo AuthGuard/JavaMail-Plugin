@@ -16,6 +16,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Optional;
 import java.util.Properties;
 
 /**
@@ -62,19 +63,15 @@ public class JavaMailProvider implements EmailProvider {
 
     @Override
     public void send(final ImmutableEmail immutableEmail) {
-        final ImmutableTemplateConfig templateConfig = providerConfig.getTemplates().get(immutableEmail.getTemplate());
-        final String templateFile = templateConfig.getFile();
+        final ImmutableTemplateConfig templateConfig = Optional.ofNullable(providerConfig.getTemplates())
+                .map(templates -> templates.get(immutableEmail.getTemplate()))
+                .orElse(null);
 
-        LOG.debug("Template {} was mapped to file {}", immutableEmail.getTemplate(), templateFile);
-
-        final Try<String> contentTry = templatesLoader.get(templateFile, providerConfig.enableFileCache())
-                .flatMap(template -> templateResolver.resolve(template, immutableEmail.getParameters()));
-
-        if (contentTry.isFailure()) {
-            LOG.error("Failed to process template ({}, {})", immutableEmail.getTemplate(),
-                    templateFile, contentTry.getCause());
+        if (templateConfig == null) {
+            LOG.error("Template {} is not mapped to a file", immutableEmail.getTemplate());
         } else {
-            doSend(immutableEmail, templateConfig.getSubject(), contentTry.get());
+            loadAndParseTemplate(immutableEmail, templateConfig)
+                    .andThen(content -> doSend(immutableEmail, templateConfig.getSubject(), content));
         }
     }
 
@@ -84,6 +81,22 @@ public class JavaMailProvider implements EmailProvider {
         }
 
         return mailSession;
+    }
+
+    private Try<String> loadAndParseTemplate(final ImmutableEmail immutableEmail, final ImmutableTemplateConfig templateConfig) {
+        final String templateFile = templateConfig.getFile();
+
+        LOG.debug("Template {} was mapped to file {}", immutableEmail.getTemplate(), templateFile);
+
+        Try<String> contentTry = templatesLoader.get(templateFile, providerConfig.enableFileCache())
+                .flatMap(template -> templateResolver.resolve(template, immutableEmail.getParameters()));
+
+        if (contentTry.isFailure()) {
+            LOG.error("Failed to process template ({}, {})", immutableEmail.getTemplate(),
+                    templateFile, contentTry.getCause());
+        }
+
+        return contentTry;
     }
 
     private void doSend(final ImmutableEmail immutableEmail, final String subject, final String content) {
