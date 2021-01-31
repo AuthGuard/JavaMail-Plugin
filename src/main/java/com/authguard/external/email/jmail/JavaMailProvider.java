@@ -52,7 +52,6 @@ public class JavaMailProvider implements EmailProvider {
         this.providerConfig = config.getAsConfigBean("provider", ImmutableJavaMailProviderConfig.class);
     }
 
-    @Inject
     public JavaMailProvider(final ImmutableJavaMailProviderConfig providerConfig, final Properties javaMailConfig) {
         this.templateResolver = new HandlebarsTemplateResolver();
         this.templatesLoader = new TemplatesLoader();
