@@ -51,6 +51,7 @@ class SmtpJavaMailProviderTest {
 
         javaMailProperties.setProperty("mail.smtp.host", "localhost");
         javaMailProperties.setProperty("mail.smtp.port", "" + greenMail.getSmtp().getPort());
+        javaMailProperties.setProperty("mail.debug", "true");
 
         secureJavaMailProperties.setProperty("mail.smtp.host", "localhost");
         secureJavaMailProperties.setProperty("mail.smtp.port", "" + greenMail.getSmtps().getPort());
