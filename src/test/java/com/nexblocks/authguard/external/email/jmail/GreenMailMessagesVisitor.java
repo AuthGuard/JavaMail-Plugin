@@ -1,4 +1,4 @@
-package com.authguard.external.email.jmail;
+package com.nexblocks.authguard.external.email.jmail;
 
 import com.icegreen.greenmail.util.GreenMail;
 

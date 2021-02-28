@@ -1,4 +1,4 @@
-package com.authguard.external.email.jmail;
+package com.nexblocks.authguard.external.email.jmail;
 
 import com.github.jknack.handlebars.Context;
 import com.github.jknack.handlebars.Handlebars;

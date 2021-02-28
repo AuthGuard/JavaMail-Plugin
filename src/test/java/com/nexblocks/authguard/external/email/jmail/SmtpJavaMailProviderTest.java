@@ -1,8 +1,8 @@
-package com.authguard.external.email.jmail;
+package com.nexblocks.authguard.external.email.jmail;
 
-import com.authguard.external.email.ImmutableEmail;
-import com.authguard.external.email.jmail.config.ImmutableJavaMailProviderConfig;
-import com.authguard.external.email.jmail.config.ImmutableTemplateConfig;
+import com.nexblocks.authguard.external.email.ImmutableEmail;
+import com.nexblocks.authguard.external.email.jmail.config.ImmutableJavaMailProviderConfig;
+import com.nexblocks.authguard.external.email.jmail.config.ImmutableTemplateConfig;
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetup;

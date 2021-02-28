@@ -1,4 +1,4 @@
-package com.authguard.external.email.jmail.config;
+package com.nexblocks.authguard.external.email.jmail.config;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.immutables.value.Value;

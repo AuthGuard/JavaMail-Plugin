@@ -1,10 +1,10 @@
-package com.authguard.external.email.jmail;
+package com.nexblocks.authguard.external.email.jmail;
 
-import com.authguard.config.ConfigContext;
-import com.authguard.external.email.EmailProvider;
-import com.authguard.external.email.ImmutableEmail;
-import com.authguard.external.email.jmail.config.ImmutableJavaMailProviderConfig;
-import com.authguard.external.email.jmail.config.ImmutableTemplateConfig;
+import com.nexblocks.authguard.config.ConfigContext;
+import com.nexblocks.authguard.external.email.EmailProvider;
+import com.nexblocks.authguard.external.email.ImmutableEmail;
+import com.nexblocks.authguard.external.email.jmail.config.ImmutableJavaMailProviderConfig;
+import com.nexblocks.authguard.external.email.jmail.config.ImmutableTemplateConfig;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import io.vavr.control.Try;
